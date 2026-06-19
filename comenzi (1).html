@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Comenzi</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root{
+  --bg:#0a0a0a;
+  --surface:#141414;
+  --surface-2:#1c1c1c;
+  --line:#2a2a2a;
+  --text:#f3f2ee;
+  --muted:#8f8d87;
+  --red:#c8202a;
+  --red-dim:#5e1015;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  padding:64px 24px 80px;
+}
+
+.wrap{max-width:760px; margin:0 auto;}
+
+/* HERO */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  letter-spacing:.25em;
+  color:var(--red);
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+
+h1{
+  font-family:'Anton',sans-serif;
+  font-weight:400;
+  font-style:normal;
+  transform:skewX(-6deg);
+  font-size:clamp(56px,12vw,108px);
+  line-height:.85;
+  letter-spacing:.01em;
+  color:var(--text);
+}
+h1 span{color:var(--red);}
+
+.subhead{
+  margin-top:18px;
+  max-width:46ch;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
+}
+
+.divider{
+  margin:40px 0 48px;
+  height:3px;
+  background:linear-gradient(90deg,var(--red), transparent 70%);
+}
+
+/* LINEUP LIST */
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 14px;
+}
+
+.lineup{list-style:none;}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:17px 18px 17px 22px;
+  text-decoration:none;
+  color:inherit;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.lineup li:first-child .row{border-top:1px solid var(--line);}
+
+.row::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:3px;
+  background:var(--accent);
+  -webkit-mask-image:linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+  mask-image:linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+  transition:opacity .3s ease;
+  z-index:1;
+}
+
+.row::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#ff2330;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .4s cubic-bezier(.65,0,.35,1);
+  z-index:0;
+}
+.row:hover::after{transform:scaleX(1);}
+.row:hover::before{opacity:0;}
+
+.row-num{
+  position:relative;
+  z-index:2;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--muted);
+  width:20px;
+  flex-shrink:0;
+  transition:color .25s ease;
+}
+.row:hover .row-num{color:#000;}
+
+.row-stack{
+  position:relative;
+  z-index:2;
+  flex:1;
+  height:20px;
+}
+
+.row-cat{
+  position:absolute;
+  left:0; top:0;
+  font-family:'JetBrains Mono',monospace;
+  font-weight:700;
+  font-size:16px;
+  letter-spacing:.02em;
+  color:var(--text);
+  transition:opacity .25s ease, transform .3s ease;
+}
+.row:hover .row-cat{
+  opacity:0;
+  transform:translateY(-10px);
+}
+
+.row-desc{
+  position:absolute;
+  left:0; right:0; top:0;
+  text-align:center;
+  font-family:'Inter',sans-serif;
+  font-weight:700;
+  font-size:13.5px;
+  color:#000;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .25s ease .08s, transform .3s ease .08s;
+}
+.row:hover .row-desc{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.arrow{
+  position:relative;
+  z-index:2;
+  font-family:'JetBrains Mono',monospace;
+  color:var(--red);
+  opacity:0;
+  transform:translateX(-4px);
+  transition:opacity .2s ease, transform .2s ease;
+  flex-shrink:0;
+}
+.row:hover .arrow{opacity:0;}
+
+/* FOOTER */
+footer{
+  margin-top:56px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:12px;
+  color:var(--muted);
+}
+footer a{color:var(--red); text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>COMENZI<span>.</span></h1>
+
+  <div class="divider"></div>
+
+  <ul class="lineup">
+    <li><a class="row" href="#" style="--accent:rgba(200,32,42,0.85);"><span class="row-num">01</span><span class="row-stack"><span class="row-cat">!rank</span><span class="row-desc">Afișează rank-ul curent</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(188,30,39,0.82);"><span class="row-num">02</span><span class="row-stack"><span class="row-cat">!ign</span><span class="row-desc">In-game name-ul streamerului</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(177,28,37,0.78);"><span class="row-num">03</span><span class="row-stack"><span class="row-cat">!opgg</span><span class="row-desc">Link către profilul op.gg</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(165,26,34,0.75);"><span class="row-num">04</span><span class="row-stack"><span class="row-cat">!tracker</span><span class="row-desc">Link tracker pentru Valorant</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(154,24,32,0.71);"><span class="row-num">05</span><span class="row-stack"><span class="row-cat">!sens</span><span class="row-desc">Sensibilitatea mouse-ului</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(142,22,29,0.68);"><span class="row-num">06</span><span class="row-stack"><span class="row-cat">!crosshair</span><span class="row-desc">Codul de crosshair folosit</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(131,20,27,0.64);"><span class="row-num">07</span><span class="row-stack"><span class="row-cat">!setup</span><span class="row-desc">Setup-ul complet de streaming</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(119,19,25,0.61);"><span class="row-num">08</span><span class="row-stack"><span class="row-cat">!socials</span><span class="row-desc">Rețelele de socializare</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(108,17,22,0.57);"><span class="row-num">09</span><span class="row-stack"><span class="row-cat">!discord</span><span class="row-desc">Link către serverul de Discord</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(96,15,20,0.54);"><span class="row-num">10</span><span class="row-stack"><span class="row-cat">!uptime</span><span class="row-desc">Timpul curent de stream</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(84,13,17,0.51);"><span class="row-num">11</span><span class="row-stack"><span class="row-cat">!song</span><span class="row-desc">Piesa care rulează acum</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(73,11,15,0.47);"><span class="row-num">12</span><span class="row-stack"><span class="row-cat">!age</span><span class="row-desc">Arată vârsta mea</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(61,9,13,0.44);"><span class="row-num">13</span><span class="row-stack"><span class="row-cat">!pc</span><span class="row-desc">Specificațiile PC-ului</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(50,8,10,0.4);"><span class="row-num">14</span><span class="row-stack"><span class="row-cat">!schedule</span><span class="row-desc">Programul de streaming</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(38,6,8,0.37);"><span class="row-num">15</span><span class="row-stack"><span class="row-cat">!lurk</span><span class="row-desc">Pune-te pe lurk</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(27,4,5,0.33);"><span class="row-num">16</span><span class="row-stack"><span class="row-cat">!followage</span><span class="row-desc">De cât timp urmărești canalul</span></span><span class="arrow">&rarr;</span></a></li>
+    <li><a class="row" href="#" style="--accent:rgba(15,2,3,0.3);"><span class="row-num">17</span><span class="row-stack"><span class="row-cat">!commands</span><span class="row-desc">Lista cu toate comenzile</span></span><span class="arrow">&rarr;</span></a></li>
+  </ul>
+
+</div>
+</body>
+</html>
